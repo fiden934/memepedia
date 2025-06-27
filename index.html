@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base target="_self">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MemePedia - The Ultimate Meme Collection</title>
+    <meta name="description" content="Browse thousands of memes across various categories including dark humor, funny, and more. The internet's largest meme collection.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#FF4500",  // Orange-red
+                        secondary: "#00A2FF",  // Bright blue
+                        dark: "#0F172A",
+                        light: "#F8FAFC",
+                        accent: "#10B981",
+                        darkhumor: "#6B21A8"  // Purple for dark humor
+                    },
+                    fontFamily: {
+                        sans: ['"DM Sans"', 'sans-serif'],
+                        meme: ['Impact', 'Haettenschweiler', 'Arial Narrow Bold', 'sans-serif']
+                    },
+                    boxShadow: {
+                        'meme': '0 10px 15px -3px rgba(0, 0, 0, 0.2)',
+                        'meme-hover': '0 20px 25px -5px rgba(0, 0, 0, 0.2)'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+        .meme-text {
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            text-transform: uppercase;
+            color: white;
+            text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;
+            letter-spacing: 1px;
+            line-height: 1.2;
+        }
+        .category-card {
+            transition: all 0.3s ease;
+            transform: translateY(0);
+        }
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+        .meme-card {
+            transition: all 0.3s ease;
+        }
+        .meme-card:hover {
+            transform: scale(1.02);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-gray-100 font-sans">
+    <header class="bg-white/80 backdrop-blur-md border-b border-gray-200 sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <nav class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+                        <i class="fas fa-laugh-squint text-white text-xl"></i>
+                    </div>
+                    <h1 class="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">MemePedia</h1>
+                </div>
+                <div class="hidden lg:flex space-x-8">
+                    <a href="#" class="text-dark font-medium hover:text-primary transition">Home</a>
+                    <a href="#" class="text-dark font-medium hover:text-primary transition">Categories</a>
+                    <a href="#" class="text-dark font-medium hover:text-primary transition">Trending</a>
+                    <a href="#" class="text-dark font-medium hover:text-primary transition">Dark Humor</a>
+                    <a href="#" class="text-dark font-medium hover:text-primary transition">Submit</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="lg:hidden text-dark">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                    <div class="relative hidden md:block">
+                        <input type="text" placeholder="Search memes..." class="pl-10 pr-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent w-64">
+                        <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                    </div>
+                    <button class="bg-gradient-to-r from-primary to-secondary text-white px-5 py-2 rounded-full hover:opacity-90 transition font-medium shadow-md">Sign In</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <!-- Hero Section -->
+        <section class="mb-16">
+            <div class="bg-gradient-to-r from-primary to-secondary rounded-2xl p-8 md:p-12 text-white">
+                <div class="max-w-2xl">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4">Laugh Until It Hurts</h1>
+                    <p class="text-xl mb-6">Explore the internet's largest collection of memes, from wholesome to dark humor and everything in between.</p>
+                    <div class="flex flex-wrap gap-3">
+                        <button class="bg-white text-primary px-6 py-3 rounded-full font-bold hover:bg-opacity-90 transition shadow-lg">Browse Memes</button>
+                        <button class="bg-black/20 text-white px-6 py-3 rounded-full font-bold hover:bg-black/30 transition border border-white/20">Submit Yours</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-dark mb-8 text-center">Meme Categories</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+                <!-- Dark Humor -->
+                <a href="#" class="category-card bg-gradient-to-br from-purple-900 to-purple-700 rounded-xl p-5 flex flex-col items-center text-center shadow-lg hover:shadow-xl">
+                    <div class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center mb-3">
+                        <i class="fas fa-skull text-2xl text-white"></i>
+                    </div>
+                    <span class="font-bold text-white">Dark Humor</span>
+                    <span class="text-xs text-white/80 mt-1">Not for everyone</span>
+                </a>
+                
+                <!-- Funny -->
+                <a href="#" class="category-card bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-xl p-5 flex flex-col items-center text-center shadow-lg hover:shadow-xl">
+                    <div class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center mb-3">
+                        <i class="fas fa-grin-tears text-2xl text-white"></i>
+                    </div>
+                    <span class="font-bold text-white">Funny</span>
+                    <span class="text-xs text-white/80 mt-1">LOL material</span>
+                </a>
+                
+                <!-- Reaction -->
+                <a href="#" class="category-card bg-gradient-to-br from-red-500 to-red-600 rounded-xl p-5 flex flex-col items-center text-center shadow-lg hover:shadow-xl">
+                    <div class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center mb-3">
+                        <i class="fas fa-surprise text-2xl text-white"></i>
+                    </div>
+                    <span class="font-bold text-white">Reaction</span>
+                    <span class="text-xs text-white/80 mt-1">Perfect responses</span>
+                </a>
+                
+                <!-- Animals -->
+                <a href="#" class="category-card bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-5 flex flex-col items-center text-center shadow-lg hover:shadow-xl">
+                    <div class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center mb-3">
+                        <i class="fas fa-paw text-2xl text-white"></i>
+                    </div>
+                    <span class="font-bold text-white">Animals</span>
+                    <span class="text-xs text-white/80 mt-1">Cute & funny</span>
+                </a>
+                
+                <!-- Gaming -->
+                <a href="#" class="category-card bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-5 flex flex-col items-center text-center shadow-lg hover:shadow-xl">
+                    <div class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center mb-3">
+                        <i class="fas fa-gamepad text-2xl text-white"></i>
+                    </div>
+                    <span class="font-bold text-white">Gaming</span>
+                    <span class="text-xs text-white/80 mt-1">GG memes</span>
+                </a>
+                
+                <!-- TV & Movies -->
+                <a href="#" class="category-card bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-5 flex flex-col items-center text-center shadow-lg hover:shadow-xl">
+                    <div class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center mb-3">
+                        <i class="fas fa-film text-2xl text-white"></i>
+                    </div>
+                    <span class="font-bold text-white">TV & Movies</span>
+                    <span class="text-xs text-white/80 mt-1">Pop culture</span>
+                </a>
+                
+                <!-- Wholesome -->
+                <a href="#" class="category-card bg-gradient-to-br from-pink-400 to-pink-600 rounded-xl p-5 flex flex-col items-center text-center shadow-lg hover:shadow-xl">
+                    <div class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center mb-3">
+                        <i class="fas fa-heart text-2xl text-white"></i>
+                    </div>
+                    <span class="font-bold text-white">Wholesome</span>
+                    <span class="text-xs text-white/80 mt-1">Feel-good memes</span>
+                </a>
+                
+                <!-- Dank -->
+                <a href="#" class="category-card bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-5 flex flex-col items-center text-center shadow-lg hover:shadow-xl">
+                    <div class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center mb-3">
+                        <i class="fas fa-fire text-2xl text-white"></i>
+                    </div>
+                    <span class="font-bold text-white">Dank</span>
+                    <span class="text-xs text-white/80 mt-1">Extra spicy</span>
+                </a>
+                
+                <!-- Edgy -->
+                <a href="#" class="category-card bg-gradient-to-br from-red-800 to-red-900 rounded-xl p-5 flex flex-col items-center text-center shadow-lg hover:shadow-xl">
+                    <div class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center mb-3">
+                        <i class="fas fa-bolt text-2xl text-white"></i>
+                    </div>
+                    <span class="font-bold text-white">Edgy</span>
+                    <span class="text-xs text-white/80 mt-1">Pushing boundaries</span>
+                </a>
+                
+                <!-- Surreal -->
+                <a href="#" class="category-card bg-gradient-to-br from-indigo-500 to-indigo-700 rounded-xl p-5 flex flex-col items-center text-center shadow-lg hover:shadow-xl">
+                    <div class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center mb-3">
+                        <i class="fas fa-cloud-moon text-2xl text-white"></i>
+                    </div>
+                    <span class="font-bold text-white">Surreal</span>
+                    <span class="text-xs text-white/80 mt-1">Mind-bending</span>
+                </a>
+                
+                <!-- Meta -->
+                <a href="#" class="category-card bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-xl p-5 flex flex-col items-center text-center shadow-lg hover:shadow-xl">
+                    <div class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center mb-3">
+                        <i class="fas fa-redo text-2xl text-white"></i>
+                    </div>
+                    <span class="font-bold text-white">Meta</span>
+                    <span class="text-xs text-white/80 mt-1">Memes about memes</span>
+                </a>
+                
+                <!-- Political -->
+                <a href="#" class="category-card bg-gradient-to-br from-blue-800 to-blue-900 rounded-xl p-5 flex flex-col items-center text-center shadow-lg hover:shadow-xl">
+                    <div class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center mb-3">
+                        <i class="fas fa-landmark text-2xl text-white"></i>
+                    </div>
+                    <span class="font-bold text-white">Political</span>
+                    <span class="text-xs text-white/80 mt-1">Current affairs</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Trending Dark Humor Section -->
+        <section class="mb-16">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-3xl font-bold text-dark">Trending Dark Humor</h2>
+                <a href="#" class="text-primary font-medium hover:underline flex items-center">
+                    View All <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <div class="meme-card bg-white rounded-xl overflow-hidden shadow-meme hover:shadow-meme-hover transition">
+                    <div class="relative">
+                        <img src="https://picsum.photos/400/300?random=101" alt="Dark humor meme 1" class="w-full h-48 object-cover" loading="lazy">
+                        <div class="absolute inset-0 flex flex-col justify-between p-3">
+                            <p class="meme-text text-xl">When you realize</p>
+                            <p class="meme-text text-xl text-right">life has no meaning</p>
+                        </div>
+                        <div class="absolute top-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded-full">
+                            <i class="fas fa-skull mr-1"></i> Dark
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2">Existential Crisis</h3>
+                        <div class="flex justify-between items-center text-sm text-gray-500">
+                            <span>1.2M views</span>
+                            <div class="flex space-x-3">
+                                <span><i class="fas fa-thumbs-up"></i> 42K</span>
+                                <span><i class="fas fa-comment"></i> 1.1K</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="meme-card bg-white rounded-xl overflow-hidden shadow-meme hover:shadow-meme-hover transition">
+                    <div class="relative">
+                        <img src="https://picsum.photos/400/300?random=102" alt="Dark humor meme 2" class="w-full h-48 object-cover" loading="lazy">
+                        <div class="absolute inset-0 flex flex-col justify-between p-3">
+                            <p class="meme-text text-xl">Me waiting for</p>
+                            <p class="meme-text text-xl text-right">the sweet release</p>
+                        </div>
+                        <div class="absolute top-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded-full">
+                            <i class="fas fa-skull mr-1"></i> Dark
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2">Monday Mood</h3>
+                        <div class="flex justify-between items-center text-sm text-gray-500">
+                            <span>980K views</span>
+                            <div class="flex space-x-3">
+                                <span><i class="fas fa-thumbs-up"></i> 38K</span>
+                                <span><i class="fas fa-comment"></i> 890</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="meme-card bg-white rounded-xl overflow-hidden shadow-meme hover:shadow-meme-hover transition">
+                    <div class="relative">
+                        <img src="https://picsum.photos/400/300?random=103" alt="Dark humor meme 3" class="w-full h-48 object-cover" loading="lazy">
+                        <div class="absolute inset-0 flex flex-col justify-between p-3">
+                            <p class="meme-text text-xl">When you're depressed</p>
+                            <p class="meme-text text-xl text-right">but make it funny</p>
+                        </div>
+                        <div class="absolute top-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded-full">
+                            <i class="fas fa-skull mr-1"></i> Dark
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2">Relatable</h3>
+                        <div class="flex justify-between items-center text-sm text-gray-500">
+                            <span>850K views</span>
+                            <div class="flex space-x-3">
+                                <span><i class="fas fa-thumbs-up"></i> 35K</span>
+                                <span><i class="fas fa-comment"></i> 780</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="meme-card bg-white rounded-xl overflow-hidden shadow-meme hover:shadow-meme-hover transition">
+                    <div class="relative">
+                        <img src="https://picsum.photos/400/300?random=104" alt="Dark humor meme 4" class="w-full h-48 object-cover" loading="lazy">
+                        <div class="absolute inset-0 flex flex-col justify-between p-3">
+                            <p class="meme-text text-xl">My therapist:</p>
+                            <p class="meme-text text-xl text-right">Me:</p>
+                        </div>
+                        <div class="absolute top-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded-full">
+                            <i class="fas fa-skull mr-1"></i> Dark
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2">Therapy Session</h3>
+                        <div class="flex justify-between items-center text-sm text-gray-500">
+                            <span>720K views</span>
+                            <div class="flex space-x-3">
+                                <span><i class="fas fa-thumbs-up"></i> 30K</span>
+                                <span><i class="fas fa-comment"></i> 650</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Funny Memes Section -->
+        <section class="mb-16">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-3xl font-bold text-dark">Hilariously Funny</h2>
+                <a href="#" class="text-primary font-medium hover:underline flex items-center">
+                    View All <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <div class="meme-card bg-white rounded-xl overflow-hidden shadow-meme hover:shadow-meme-hover transition">
+                    <div class="relative">
+                        <img src="https://picsum.photos/400/300?random=201" alt="Funny meme 1" class="w-full h-48 object-cover" loading="lazy">
+                        <div class="absolute inset-0 flex flex-col justify-between p-3">
+                            <p class="meme-text text-xl">When you tell a joke</p>
+                            <p class="meme-text text-xl text-right">and no one laughs</p>
+                        </div>
+                        <div class="absolute top-2 right-2 bg-yellow-500/90 text-white text-xs px-2 py-1 rounded-full">
+                            <i class="fas fa-grin-tears mr-1"></i> Funny
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2">Awkward Moment</h3>
+                        <div class="flex justify-between items-center text-sm text-gray-500">
+                            <span>1.5M views</span>
+                            <div class="flex space-x-3">
+                                <span><i class="fas fa-thumbs-up"></i> 52K</span>
+                                <span><i class="fas fa-comment"></i> 1.4K</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="meme-card bg-white rounded-xl overflow-hidden shadow-meme hover:shadow-meme-hover transition">
+                    <div class="relative">
+                        <img src="https://picsum.photos/400/300?random=202" alt="Funny meme 2" class="w-full h-48 object-cover" loading="lazy">
+                        <div class="absolute inset-0 flex flex-col justify-between p-3">
+                            <p class="meme-text text-xl">Me trying to act</p>
+                            <p class="meme-text text-xl text-right">normal in public</p>
+                        </div>
+                        <div class="absolute top-2 right-2 bg-yellow-500/90 text-white text-xs px-2 py-1 rounded-full">
+                            <i class="fas fa-grin-tears mr-1"></i> Funny
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2">Social Anxiety</h3>
+                        <div class="flex justify-between items-center text-sm text-gray-500">
+                            <span>1.3M views</span>
+                            <div class="flex space-x-3">
+                                <span><i class="fas fa-thumbs-up"></i> 48K</span>
+                                <span><i class="fas fa-comment"></i> 1.2K</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="meme-card bg-white rounded-xl overflow-hidden shadow-meme hover:shadow-meme-hover transition">
+                    <div class="relative">
+                        <img src="https://picsum.photos/400/300?random=203" alt="Funny meme 3" class="w-full h-48 object-cover" loading="lazy">
+                        <div class="absolute inset-0 flex flex-col justify-between p-3">
+                            <p class="meme-text text-xl">When you're hungry</p>
+                            <p class="meme-text text-xl text-right">but also lazy</p>
+                        </div>
+                        <div class="absolute top-2 right-2 bg-yellow-500/90 text-white text-xs px-2 py-1 rounded-full">
+                            <i class="fas fa-grin-tears mr-1"></i> Funny
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2">First World Problems</h3>
+                        <div class="flex justify-between items-center text-sm text-gray-500">
+                            <span>1.1M views</span>
+                            <div class="flex space-x-3">
+                                <span><i class="fas fa-thumbs-up"></i> 42K</span>
+                                <span><i class="fas fa-comment"></i> 980</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="meme-card bg-white rounded-xl overflow-hidden shadow-meme hover:shadow-meme-hover transition">
+                    <div class="relative">
+                        <img src="https://picsum.photos/400/300?random=204" alt="Funny meme 4" class="w-full h-48 object-cover" loading="lazy">
+                        <div class="absolute inset-0 flex flex-col justify-between p-3">
+                            <p class="meme-text text-xl">My bank account:</p>
+                            <p class="meme-text text-xl text-right">My shopping cart:</p>
+                        </div>
+                        <div class="absolute top-2 right-2 bg-yellow-500/90 text-white text-xs px-2 py-1 rounded-full">
+                            <i class="fas fa-grin-tears mr-1"></i> Funny
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2">Financial Decisions</h3>
+                        <div class="flex justify-between items-center text-sm text-gray-500">
+                            <span>950K views</span>
+                            <div class="flex space-x-3">
+                                <span><i class="fas fa-thumbs-up"></i> 38K</span>
+                                <span><i class="fas fa-comment"></i> 850</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="bg-dark text-white rounded-2xl p-8 md:p-12 mb-16">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Got a Hilarious Meme?</h2>
+                <p class="text-xl mb-6 text-gray-300">Share it with millions of meme lovers and become famous (or at least get some internet points).</p>
+                <button class="bg-gradient-to-r from-primary to-secondary text-white px-8 py-4 rounded-full font-bold hover:opacity-90 transition shadow-xl text-lg">Submit Your Meme Now</button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center mr-2">
+                            <i class="fas fa-laugh-squint text-white"></i>
+                        </div>
+                        MemePedia
+                    </h3>
+                    <p class="text-gray-400">The internet's premium meme destination since 2023.</p>
+                    <div class="flex space-x-4 mt-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-reddit text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-discord text-xl"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Categories</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Dark Humor</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Funny Memes</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Reaction</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Animals</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Gaming</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Company</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Careers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Terms of Service</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Newsletter</h4>
+                    <p class="text-gray-400 mb-4">Get the funniest memes delivered to your inbox weekly.</p>
+                    <div class="flex">
+                        <input type="email" placeholder="Your email" class="px-4 py-3 rounded-l-lg text-dark focus:outline-none w-full">
+                        <button class="bg-primary px-4 py-3 rounded-r-lg hover:bg-opacity-90 transition">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>© 2023 MemePedia. All rights reserved. Made with <i class="fas fa-heart text-red-500"></i> and <i class="fas fa-laugh-squint text-yellow-500"></i>.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Define meme data
+        const categories = [
+            { "id": 1, "name": "Dark Humor", "icon": "skull", "color": "purple" },
+            { "id": 2, "name": "Funny", "icon": "grin-tears", "color": "yellow" },
+            { "id": 3, "name": "Reaction", "icon": "surprise", "color": "red" },
+            { "id": 4, "name": "Animals", "icon": "paw", "color": "blue" },
+            { "id": 5, "name": "Gaming", "icon": "gamepad", "color": "green" },
+            { "id": 6, "name": "TV & Movies", "icon": "film", "color": "purple" },
+            { "id": 7, "name": "Wholesome", "icon": "heart", "color": "pink" },
+            { "id": 8, "name": "Dank", "icon": "fire", "color": "gray" },
+            { "id": 9, "name": "Edgy", "icon": "bolt", "color": "red" },
+            { "id": 10, "name": "Surreal", "icon": "cloud-moon", "color": "indigo" },
+            { "id": 11, "name": "Meta", "icon": "redo", "color": "cyan" },
+            { "id": 12, "name": "Political", "icon": "landmark", "color": "blue" }
+        ];
+
+        const darkHumorMemes = [
+            { 
+                "id": 101, 
+                "title": "Existential Crisis", 
+                "image": "https://picsum.photos/400/300?random=101",
+                "views": "1.2M",
+                "likes": "42K",
+                "comments": "1.1K",
+                "topText": "When you realize",
+                "bottomText": "life has no meaning",
+                "type": "dark"
+            },
+            { 
+                "id": 102, 
+                "title": "Monday Mood", 
+                "image": "https://picsum.photos/400/300?random=102",
+                "views": "980K",
+                "likes": "38K",
+                "comments": "890",
+                "topText": "Me waiting for",
+                "bottomText": "the sweet release",
+                "type": "dark"
+            },
+            { 
+                "id": 103, 
+                "title": "Relatable", 
+                "image": "https://picsum.photos/400/300?random=103",
+                "views": "850K",
+                "likes": "35K",
+                "comments": "780",
+                "topText": "When you're depressed",
+                "bottomText": "but make it funny",
+                "type": "dark"
+            },
+            { 
+                "id": 104, 
+                "title": "Therapy Session", 
+                "image": "https://picsum.photos/400/300?random=104",
+                "views": "720K",
+                "likes": "30K",
+                "comments": "650",
+                "topText": "My therapist:",
+                "bottomText": "Me:",
+                "type": "dark"
+            }
+        ];
+
+        const funnyMemes = [
+            { 
+                "id": 201, 
+                "title": "Awkward Moment", 
+                "image": "https://picsum.photos/400/300?random=201",
+                "views": "1.5M",
+                "likes": "52K",
+                "comments": "1.4K",
+                "topText": "When you tell a joke",
+                "bottomText": "and no one laughs",
+                "type": "funny"
+            },
+            { 
+                "id": 202, 
+                "title": "Social Anxiety", 
+                "image": "https://picsum.photos/400/300?random=202",
+                "views": "1.3M",
+                "likes": "48K",
+                "comments": "1.2K",
+                "topText": "Me trying to act",
+                "bottomText": "normal in public",
+                "type": "funny"
+            },
+            { 
+                "id": 203, 
+                "title": "First World Problems", 
+                "image": "https://picsum.photos/400/300?random=203",
+                "views": "1.1M",
+                "likes": "42K",
+                "comments": "980",
+                "topText": "When you're hungry",
+                "bottomText": "but also lazy",
+                "type": "funny"
+            },
+            { 
+                "id": 204, 
+                "title": "Financial Decisions", 
+                "image": "https://picsum.photos/400/300?random=204",
+                "views": "950K",
+                "likes": "38K",
+                "comments": "850",
+                "topText": "My bank account:",
+                "bottomText": "My shopping cart:",
+                "type": "funny"
+            }
+        ];
+
+        // Navigation click handler
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                // In a real app, this would navigate to the page
+                console.log(`Navigating to: ${link.getAttribute('href')}`);
+            });
+        });
+
+        // Mobile menu toggle (would be implemented in a real app)
+        document.querySelector('.fa-bars').addEventListener('click', () => {
+            console.log('Mobile menu toggled');
+        });
+
+        // CTA button hover effect
+        const ctaButton = document.querySelector('.bg-gradient-to-r.from-primary.to-secondary');
+        if (ctaButton) {
+            ctaButton.addEventListener('mouseenter', () => {
+                ctaButton.style.transform = 'scale(1.05)';
+            });
+            ctaButton.addEventListener('mouseleave', () => {
+                ctaButton.style.transform = 'scale(1)';
+            });
+        }
+    </script>
+</body>
+</html>
